@@ -10,4 +10,36 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-# Customize to your needs...
+unsetopt CORRECT
+
+source ~/.aliases
+source ~/.functions
+source ~/.exports
+
+stty -ixon
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#BUKU_AUTO_COMPLETE="/usr/local/Cellar/buku/4.3/share/zsh/site-functions/_buku"
+#[ -f $BUKU_AUTO_COMPLETE ] && source $BUKU_AUTO_COMPLETE
+
+eval "$(jenv init -)"
+eval "$(pyenv init -)"
+
+# Kubectl completion
+source <(kubectl completion zsh)
+
+# Created by `userpath` on 2020-01-21 13:39:12
+export PATH="$PATH:/Users/arnthorj/.local/bin"
+
+#export GOOGLE_APPLICATION_CREDENTIALS=/etc/spotify/secrets/podcastaudiotestpas.json
+
+# Fix for "Failed to set locale category" issues
+export LC_ALL=en_US.UTF-8
+
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(starship init zsh)"
